@@ -32,7 +32,7 @@ final class CategoryVC: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        quotesTableView.reloadData()
+        initialFetch()
     }
 
     override func viewDidLoad() {
@@ -58,6 +58,7 @@ final class CategoryVC: UIViewController {
         do {
             let realm = try Realm()
             categoryArray = realm.objects(RealmServiceModel.self).map({ $0 })
+            quotesTableView.reloadData()
         } catch {
             print("ERRR")
         }
